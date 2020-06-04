@@ -33,7 +33,7 @@ When executing  **GeneratorLoad**,  as GeneratorStore, you first need to compile
 
 #### Experiment Results
 
-We evaluate SRRTA on a real open-source project [Apache Common Math](https://commons.apache.org/proper/commons-math/), based one of whose [snapshots](https://github.com/apache/commons-math/tree/bbfe7e4ea526e39ba0a79f0258200bc0d898f0de) we construct 15 pairs of test cases and source code under test. To eliminate randomness in time collection, we repeat all the experiments 10 times and adopt the average as the final results. In the paper, we only presents the average  of various storage strategies on 15 tests. Here, we will also present the complete result on each test.
+We evaluate SRRTA on a real open-source project [Apache Common Math](https://commons.apache.org/proper/commons-math/), based [one](https://github.com/apache/commons-math/tree/bbfe7e4ea526e39ba0a79f0258200bc0d898f0de) of whose snapshots we construct 15 pairs of test cases and source code under test. To eliminate randomness in time collection, we repeat all the experiments 10 times and adopt the average as the final results. In the paper, we only presents the average  of various storage strategies on 15 tests. Here, we will also present the complete result on each test.
 
 ##### Mean Result
 
