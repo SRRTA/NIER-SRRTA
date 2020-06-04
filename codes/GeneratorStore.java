@@ -107,11 +107,11 @@ class StoreMethodAdapter extends MethodVisitor implements Opcodes {
             if(cur_line < 339 && var <= 4||cur_line >= 339 && cur_line < 356 && var <= 5||cur_line >= 356 && var <= 6) {
                 if(opcode == ASTORE) {
                     if (className != null) {
-                        map_varType.put(var, className);  // 将STORE转化为LOAD
+                        map_varType.put(var, className);
                         className = null;
                     }
                 }
-                map_loadType.put(var,opcode - ISTORE + ILOAD);  // 将STORE转化为LOAD
+                map_loadType.put(var,opcode - ISTORE + ILOAD);
             }
         }
     }

@@ -398,11 +398,6 @@ class LoadMethodAdapter extends MethodVisitor implements Opcodes {
                 label_a = new Label();
                 mv.visitJumpInsn(IFNE, label_a);
 
-
-
-
-
-
             }
         }
     }
