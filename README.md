@@ -2,11 +2,11 @@
 
 SRRTA is  a state-reuse based acceleration approach for regression testing, which consists of two components,  state storage and state loading. In state storage, SRRTA collects some program states at the selected storage points; in state loading, SRRTA loads the stored program states  unaffected by regression modifications. SRRTA is implemented with ASM, a JVM byte-code manipulation framework, to collect and load program states by instrumenting the old version and the new version respectively at the byte-code level.  We next introduce how to apply SRRTA on your project and the experiment results of our work.
 
-#### Apply SRRTA
+### Apply SRRTA
 
 The implementation of SRRTA is placed in the "codes" directory, including GeneratorStore, GeneratorLoad and AuxiliaryFunction. When executing SRRTA, you need two steps.
 
-##### 1 State Storage
+#### 1 State Storage
 
 The first step is to store the  program states when testing the old version by executing the instrumentation program **GeneratorStore**. 
 
@@ -18,7 +18,7 @@ java GeneratorStore classUnderTest.class storagePoints method
 
 When executing  **GeneratorStore**, you  first need to compile the class(old version) you want to test. And then compile and execute **GeneratorStore**. The parameter **classUnderTest.class** is the byte-code got by compiling the class you want to test, **storagePoints** is the line numbers of the storage points selected(in the format of "line1,line2,line3"), and the **method** is the name of the method you want to test.
 
-##### 2 State Loading
+#### 2 State Loading
 
 The second step is to load the program states  when testing the new version by executing the instrumentation program **GeneratorLoad**. 
 
@@ -31,11 +31,11 @@ java GeneratorLoad classUnderTest.class storagePoints method load_true
 
 When executing  **GeneratorLoad**,  as GeneratorStore, you first need to compile the class(new version) you want to test. And then compile and execute **GeneratorLoad**. GeneratorLoad needs to be executed two times. The first three parameters are the same as GeneratorStore and the last parameter represents the the time of instrumentation, "load_false" represents the first execution and only stores the unread parameters between storage point and loading point, and doesn't instrument; "load_true" represents the second execution and instruments.
 
-#### Experiment Results
+### Experiment Results
 
 We evaluate SRRTA on a real open-source project [Apache Common Math](https://commons.apache.org/proper/commons-math/), based [one](https://github.com/apache/commons-math/tree/bbfe7e4ea526e39ba0a79f0258200bc0d898f0de) of whose snapshots we construct 15 pairs of test cases and source code under test. To eliminate randomness in time collection, we repeat all the experiments 10 times and adopt the average as the final results. In the paper, we only presents the average  of various storage strategies on 15 tests. Here, we will also present the complete result on each test.
 
-##### Mean Result
+#### 1 Mean Result
 
 | Strategy | Original Time | Online Time |   Reduced Time | Collection Time | Instrumentation Time | Occupied Space | #Success |
 | -------: | ------------: | ----------: | -------------: | --------------: | -------------------: | -------------: | -------: |
@@ -45,7 +45,7 @@ We evaluate SRRTA on a real open-source project [Apache Common Math](https://com
 |   method |               |    12,774.7 |   -865.9/-6.6% |   1,606.1/13.8% |                685.7 |       32,235.4 |     0/10 |
 |   random |               |     8,563.8 |  5,149.2/29.0% |   2,540.1/20.3% |              1,056.8 |       74,156.0 |     5/15 |
 
-##### All Result
+#### 2 All Result
 
 |   Test | Strategy | Original Time | Online Time |    Reduced Time | Collection Time | Instrumentation Time | Occupied Space |
 | -----: | -------: | ------------: | ----------: | --------------: | --------------: | -------------------: | -------------: |
